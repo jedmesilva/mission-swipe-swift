@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MapPin, Clock, DollarSign, User, Heart, X, Star, Camera, Music, Code, Wrench, Book, Coffee, ChevronLeft, Share2, Bookmark, Navigation, MessageCircle, CheckCircle2, Filter, Search, Bell, TrendingUp, Zap, Award, Users, Eye, ChevronRight, ChevronUp, ChevronDown } from 'lucide-react';
+import { MapPin, Clock, DollarSign, User, Heart, X, Star, Camera, Music, Code, Wrench, Book, Coffee, ChevronLeft, Share2, Bookmark, Navigation, MessageCircle, CheckCircle2, Filter, Search, Bell, TrendingUp, Zap, Award, Users, Eye, ChevronRight, ChevronUp, ChevronDown, Home } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const MissionsApp = () => {
+  const navigate = useNavigate();
   const [currentMission, setCurrentMission] = useState(0);
   const [acceptedMissions, setAcceptedMissions] = useState([]);
   const [savedMissions, setSavedMissions] = useState([]);
@@ -534,6 +537,12 @@ const MissionsApp = () => {
               <p className="text-orange-100 dark:text-orange-200">Suas melhores oportunidades te esperam</p>
             </div>
             <div className="flex gap-2">
+              <button 
+                onClick={() => navigate('/')}
+                className="p-3 bg-white/10 dark:bg-black/20 backdrop-blur-md rounded-full hover:bg-white/20 dark:hover:bg-black/30 transition-all duration-200 hover:scale-105 border border-white/20 dark:border-white/10"
+              >
+                <Home className="w-5 h-5" />
+              </button>
               <ThemeToggle />
               <button 
                 onClick={() => setShowFilters(true)}

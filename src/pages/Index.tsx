@@ -393,8 +393,8 @@ const MissionsApp = () => {
 
   if (showAccepted) {
     return (
-      <div className="max-w-md mx-auto bg-gradient-to-br from-orange-50/50 to-red-50/50 dark:from-gray-900 dark:to-black min-h-screen">
-        <div className="bg-gradient-to-r from-orange-500/90 to-red-500/90 dark:from-orange-600/90 dark:to-red-600/90 backdrop-blur-md p-6 pt-12 text-white border-b border-white/20 dark:border-white/10">
+      <div className="max-w-md mx-auto bg-gradient-to-br from-orange-50/50 to-black/5 dark:from-gray-900 dark:to-black min-h-screen">
+        <div className="bg-gradient-to-r from-orange-500/90 to-black/80 dark:from-orange-600/90 dark:to-black/90 backdrop-blur-md p-6 pt-12 text-white border-b border-white/20 dark:border-white/10">
           <div className="flex items-center gap-4 mb-4">
             <button 
               onClick={() => setShowAccepted(false)}
@@ -412,7 +412,7 @@ const MissionsApp = () => {
         <div className="p-4 space-y-4 -mt-4">
           {acceptedMissions.length === 0 ? (
             <div className="text-center py-16">
-              <div className="w-20 h-20 bg-gradient-to-br from-orange-100/50 to-red-100/50 dark:from-orange-500/20 dark:to-red-500/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 border border-orange-200/30 dark:border-orange-500/30">
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-100/50 to-black/10 dark:from-orange-500/20 dark:to-black/30 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 border border-orange-200/30 dark:border-orange-500/30">
                 <Heart className="w-8 h-8 text-orange-500 dark:text-orange-400" />
               </div>
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Nenhuma missão ainda</h3>
@@ -454,8 +454,8 @@ const MissionsApp = () => {
 
   if (showSaved) {
     return (
-      <div className="max-w-md mx-auto bg-gradient-to-br from-orange-50/50 to-red-50/50 dark:from-gray-900 dark:to-black min-h-screen">
-        <div className="bg-gradient-to-r from-blue-500/90 to-purple-500/90 dark:from-blue-600/90 dark:to-purple-600/90 backdrop-blur-md p-6 pt-12 text-white border-b border-white/20 dark:border-white/10">
+      <div className="max-w-md mx-auto bg-gradient-to-br from-orange-50/50 to-black/5 dark:from-gray-900 dark:to-black min-h-screen">
+        <div className="bg-gradient-to-r from-orange-500/90 to-black/80 dark:from-orange-600/90 dark:to-black/90 backdrop-blur-md p-6 pt-12 text-white border-b border-white/20 dark:border-white/10">
           <div className="flex items-center gap-4 mb-4">
             <button 
               onClick={() => setShowSaved(false)}
@@ -465,7 +465,7 @@ const MissionsApp = () => {
             </button>
             <div className="flex-1">
               <h1 className="text-xl font-bold">Salvas para Depois</h1>
-              <p className="text-blue-100 dark:text-blue-200 text-sm">{savedMissions.length} missões salvas</p>
+              <p className="text-orange-100 dark:text-orange-200 text-sm">{savedMissions.length} missões salvas</p>
             </div>
           </div>
         </div>
@@ -473,8 +473,8 @@ const MissionsApp = () => {
         <div className="p-4 space-y-4 -mt-4">
           {savedMissions.length === 0 ? (
             <div className="text-center py-16">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-100/50 to-purple-100/50 dark:from-blue-500/20 dark:to-purple-500/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-200/30 dark:border-blue-500/30">
-                <Bookmark className="w-8 h-8 text-blue-500 dark:text-blue-400" />
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-100/50 to-black/10 dark:from-orange-500/20 dark:to-black/30 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 border border-orange-200/30 dark:border-orange-500/30">
+                <Bookmark className="w-8 h-8 text-orange-500 dark:text-orange-400" />
               </div>
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Nenhuma missão salva</h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm">Deslize para baixo para salvar missões</p>
@@ -489,7 +489,7 @@ const MissionsApp = () => {
                   <div className="flex-1">
                     <div className="flex items-start justify-between mb-2">
                       <h3 className="font-bold text-gray-800 dark:text-white text-lg">{savedMission.title}</h3>
-                      <span className="bg-blue-100/80 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium">
+                      <span className="bg-orange-100/80 dark:bg-orange-500/20 text-orange-700 dark:text-orange-300 px-3 py-1 rounded-full text-xs font-medium">
                         Salva
                       </span>
                     </div>
@@ -499,7 +499,7 @@ const MissionsApp = () => {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-orange-600 dark:text-orange-400 font-bold text-xl">{savedMission.price}</span>
-                      <button className="text-blue-600 dark:text-blue-400 font-medium text-sm flex items-center gap-1 hover:text-blue-700 dark:hover:text-blue-300">
+                      <button className="text-orange-600 dark:text-orange-400 font-medium text-sm flex items-center gap-1 hover:text-orange-700 dark:hover:text-orange-300">
                         Ver detalhes <ChevronRight className="w-4 h-4" />
                       </button>
                     </div>
@@ -514,13 +514,13 @@ const MissionsApp = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto bg-gradient-to-br from-orange-50/50 to-red-50/50 dark:from-gray-900 dark:to-black min-h-screen relative overflow-hidden">
+    <div className="max-w-md mx-auto bg-gradient-to-br from-orange-50/50 to-black/5 dark:from-gray-900 dark:to-black min-h-screen relative overflow-hidden">
       <Toast message={toastMessage} show={showToast} />
       <FiltersModal />
       <DetailsModal />
       
       {/* Enhanced Header */}
-      <div className="bg-gradient-to-r from-orange-500/90 via-orange-600/90 to-red-500/90 dark:from-orange-600/90 dark:via-orange-700/90 dark:to-red-600/90 backdrop-blur-md p-6 pt-12 text-white relative overflow-hidden border-b border-white/20 dark:border-white/10">
+      <div className="bg-gradient-to-r from-orange-500/90 via-orange-600/90 to-black/80 dark:from-orange-600/90 dark:via-orange-700/90 dark:to-black/90 backdrop-blur-md p-6 pt-12 text-white relative overflow-hidden border-b border-white/20 dark:border-white/10">
         {/* Background decorations */}
         <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 dark:bg-white/10 rounded-full -translate-y-20 translate-x-20"></div>
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 dark:bg-white/10 rounded-full translate-y-16 -translate-x-16"></div>
@@ -562,7 +562,7 @@ const MissionsApp = () => {
               >
                 <Bookmark className="w-5 h-5" />
                 {savedMissions.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold animate-pulse">
                     {savedMissions.length}
                   </span>
                 )}
@@ -607,7 +607,7 @@ const MissionsApp = () => {
           {/* Card Header with Match Score */}
           <div className="relative">
             <div className="absolute top-4 right-4 z-10">
-              <div className="bg-orange-500/90 dark:bg-orange-600/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 border border-orange-400/30">
+              <div className="bg-gradient-to-r from-orange-500/90 to-black/70 dark:from-orange-600/90 dark:to-black/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 border border-orange-400/30">
                 <Zap className="w-4 h-4" />
                 {mission.matchScore}% match
               </div>
@@ -615,11 +615,11 @@ const MissionsApp = () => {
             
             <div className="p-6 pb-4">
               <div className="flex items-center gap-3 mb-4">
-                <div className={`p-4 ${mission.categoryColor} rounded-2xl shadow-lg`}>
+                <div className={`p-4 bg-gradient-to-br from-orange-500 to-black/70 rounded-2xl shadow-lg`}>
                   <IconComponent className="w-7 h-7 text-white" />
                 </div>
                 <div className="flex-1">
-                  <span className={`px-3 py-1 ${mission.categoryColor} bg-opacity-15 text-gray-700 dark:text-gray-300 rounded-full text-sm font-semibold`}>
+                  <span className={`px-3 py-1 bg-gradient-to-r from-orange-100/80 to-black/10 dark:from-orange-500/20 dark:to-black/30 text-gray-700 dark:text-gray-300 rounded-full text-sm font-semibold backdrop-blur-sm border border-orange-200/50 dark:border-orange-500/30`}>
                     {mission.category}
                   </span>
                   <div className="flex items-center gap-2 mt-1">
@@ -634,7 +634,7 @@ const MissionsApp = () => {
               {/* Enhanced Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {mission.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-gradient-to-r from-orange-100/80 to-red-100/80 dark:from-orange-500/20 dark:to-red-500/20 text-orange-700 dark:text-orange-300 rounded-xl text-sm font-medium border border-orange-200/50 dark:border-orange-500/30 backdrop-blur-sm">
+                  <span key={index} className="px-3 py-1 bg-gradient-to-r from-orange-100/80 to-black/10 dark:from-orange-500/20 dark:to-black/30 text-orange-700 dark:text-orange-300 rounded-xl text-sm font-medium border border-orange-200/50 dark:border-orange-500/30 backdrop-blur-sm">
                     {tag}
                   </span>
                 ))}
@@ -646,8 +646,8 @@ const MissionsApp = () => {
 
               {/* Enhanced Info Grid */}
               <div className="space-y-4 mb-6">
-                <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-orange-50/80 to-red-50/80 dark:from-orange-500/10 dark:to-red-500/10 rounded-2xl border border-orange-100/50 dark:border-orange-500/20 backdrop-blur-sm">
-                  <div className="p-2 bg-orange-100/80 dark:bg-orange-500/20 rounded-xl backdrop-blur-sm">
+                <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-orange-50/80 to-black/5 dark:from-orange-500/10 dark:to-black/20 rounded-2xl border border-orange-100/50 dark:border-orange-500/20 backdrop-blur-sm">
+                  <div className="p-2 bg-gradient-to-br from-orange-100/80 to-black/10 dark:from-orange-500/20 dark:to-black/30 rounded-xl backdrop-blur-sm">
                     <MapPin className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div className="flex-1">
@@ -658,8 +658,8 @@ const MissionsApp = () => {
                 </div>
                 
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-3 p-3 bg-blue-50/80 dark:bg-blue-500/10 rounded-2xl backdrop-blur-sm border border-blue-100/50 dark:border-blue-500/20">
-                    <Clock className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-orange-50/80 to-black/5 dark:from-orange-500/10 dark:to-black/20 rounded-2xl backdrop-blur-sm border border-orange-100/50 dark:border-orange-500/20">
+                    <Clock className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                     <div>
                       <div className="text-gray-800 dark:text-white font-semibold text-sm">{mission.time}</div>
                       <span className={`text-xs font-medium ${
@@ -670,7 +670,7 @@ const MissionsApp = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-orange-50/80 to-red-50/80 dark:from-orange-500/10 dark:to-red-500/10 rounded-2xl backdrop-blur-sm border border-orange-100/50 dark:border-orange-500/20">
+                  <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-orange-50/80 to-black/5 dark:from-orange-500/10 dark:to-black/20 rounded-2xl backdrop-blur-sm border border-orange-100/50 dark:border-orange-500/20">
                     <div className="text-orange-600 dark:text-orange-400 font-bold text-lg">R$</div>
                     <div>
                       <div className="text-xl font-bold text-gray-800 dark:text-white">{mission.price.replace('R$ ', '')}</div>
@@ -695,7 +695,7 @@ const MissionsApp = () => {
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {mission.benefits.map((benefit, index) => (
-                      <span key={index} className="px-2 py-1 bg-orange-50/80 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300 rounded-lg text-xs font-medium backdrop-blur-sm border border-orange-200/50 dark:border-orange-500/30">
+                      <span key={index} className="px-2 py-1 bg-gradient-to-r from-orange-50/80 to-black/5 dark:from-orange-500/10 dark:to-black/20 text-orange-700 dark:text-orange-300 rounded-lg text-xs font-medium backdrop-blur-sm border border-orange-200/50 dark:border-orange-500/30">
                         {benefit}
                       </span>
                     ))}
@@ -707,7 +707,7 @@ const MissionsApp = () => {
               <div className="bg-gradient-to-r from-gray-50/80 to-gray-100/80 dark:from-gray-800/50 dark:to-gray-900/50 rounded-2xl p-4 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-14 h-14 bg-gradient-to-br from-orange-200/80 to-red-200/80 dark:from-orange-500/30 dark:to-red-500/30 rounded-full flex items-center justify-center text-2xl backdrop-blur-sm border border-orange-300/30 dark:border-orange-500/30">
+                    <div className="w-14 h-14 bg-gradient-to-br from-orange-200/80 to-black/20 dark:from-orange-500/30 dark:to-black/40 rounded-full flex items-center justify-center text-2xl backdrop-blur-sm border border-orange-300/30 dark:border-orange-500/30">
                       {mission.client.avatar}
                     </div>
                     {mission.client.verified && (
@@ -754,7 +754,7 @@ const MissionsApp = () => {
                 <button 
                   onClick={handleAccept}
                   disabled={isLoading}
-                  className="flex-1 bg-gradient-to-r from-orange-500/90 to-red-500/90 dark:from-orange-600/90 dark:to-red-600/90 hover:from-orange-600 hover:to-red-600 dark:hover:from-orange-700 dark:hover:to-red-700 transition-all duration-200 text-white rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-bold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 backdrop-blur-sm border border-orange-400/30 dark:border-orange-500/30"
+                  className="flex-1 bg-gradient-to-r from-orange-500/90 to-black/80 dark:from-orange-600/90 dark:to-black/90 hover:from-orange-600 hover:to-black dark:hover:from-orange-700 dark:hover:to-black transition-all duration-200 text-white rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-bold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 backdrop-blur-sm border border-orange-400/30 dark:border-orange-500/30"
                 >
                   {isLoading ? (
                     <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

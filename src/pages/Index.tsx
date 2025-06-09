@@ -10,7 +10,7 @@ const MissionsApp = () => {
   const [showSaved, setShowSaved] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
+  const [toastMessage, setToastMessage] = useState({ text: '', type: 'success' });
   const [isLoading, setIsLoading] = useState(false);
   const [cardPosition, setCardPosition] = useState({ x: 0, y: 0, rotation: 0 });
   const [isDragging, setIsDragging] = useState(false);

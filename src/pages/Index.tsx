@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { MapPin, Clock, DollarSign, User, Heart, X, Star, Camera, Music, Code, Wrench, Book, Coffee, ChevronLeft, Share2, Bookmark, Navigation, MessageCircle, CheckCircle2, Filter, Search, Bell, TrendingUp, Zap, Award, Users, Eye, ChevronRight, ChevronUp } from 'lucide-react';
 
@@ -9,7 +8,7 @@ const MissionsApp = () => {
   const [showAccepted, setShowAccepted] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
+  const [toastMessage, setToastMessage] = useState({ text: '', type: 'success' });
   const [isLoading, setIsLoading] = useState(false);
   const [cardPosition, setCardPosition] = useState({ x: 0, y: 0, rotation: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -27,7 +26,7 @@ const MissionsApp = () => {
     {
       id: 1,
       category: 'Fotografia',
-      categoryColor: 'bg-orange-500',
+      categoryColor: 'bg-gradient-to-br from-orange-500 to-orange-600',
       title: 'Fotógrafo de Evento',
       description: 'Grave um vídeo de 2 minutos do show que está acontecendo na Praça da Liberdade agora',
       location: 'Praça da Liberdade',
@@ -56,7 +55,7 @@ const MissionsApp = () => {
     {
       id: 2,
       category: 'Música',
-      categoryColor: 'bg-orange-400',
+      categoryColor: 'bg-gradient-to-br from-orange-400 to-orange-500',
       title: 'Aula de Violão',
       description: 'Preciso de aulas particulares de violão para iniciante, 1 hora por semana',
       location: 'Savassi',
@@ -85,7 +84,7 @@ const MissionsApp = () => {
     {
       id: 3,
       category: 'Tecnologia',
-      categoryColor: 'bg-orange-600',
+      categoryColor: 'bg-gradient-to-br from-orange-600 to-orange-700',
       title: 'Desenvolvimento Web',
       description: 'Criar landing page responsiva para pequena empresa local',
       location: 'Remoto',
@@ -114,7 +113,7 @@ const MissionsApp = () => {
     {
       id: 4,
       category: 'Serviços',
-      categoryColor: 'bg-orange-500',
+      categoryColor: 'bg-gradient-to-br from-orange-500 to-red-600',
       title: 'Montagem de Móveis',
       description: 'Montar guarda-roupa e cômoda que chegaram hoje da loja',
       location: 'Bairro Funcionários',
@@ -143,7 +142,7 @@ const MissionsApp = () => {
     {
       id: 5,
       category: 'Educação',
-      categoryColor: 'bg-orange-400',
+      categoryColor: 'bg-gradient-to-br from-orange-400 to-orange-600',
       title: 'Aula de Matemática',
       description: 'Reforço escolar em matemática para ensino médio, 2x por semana',
       location: 'Centro',
@@ -207,22 +206,19 @@ const MissionsApp = () => {
     
     if (Math.abs(deltaX) > threshold || Math.abs(deltaY) > threshold) {
       if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        // Horizontal swipe
         if (deltaX > threshold) {
-          handleAccept(); // Swipe right - accept
+          handleAccept();
         } else if (deltaX < -threshold) {
-          handleSkip(); // Swipe left - skip
+          handleSkip();
         }
       } else {
-        // Vertical swipe
         if (deltaY < -threshold) {
-          handleShowDetails(); // Swipe up - details
+          handleShowDetails();
         } else if (deltaY > threshold) {
-          handleSaveLater(); // Swipe down - save for later
+          handleSaveLater();
         }
       }
     } else {
-      // Return to center
       setCardPosition({ x: 0, y: 0, rotation: 0 });
     }
   };
@@ -340,92 +336,92 @@ const MissionsApp = () => {
   const mission = missions[currentMission];
   const IconComponent = mission.icon;
 
-  // Enhanced Toast Component
+  // Enhanced Glass Morphism Toast Component
   const Toast = ({ message, show }) => (
     <div className={`fixed top-20 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ${
       show ? 'translate-y-0 opacity-100 scale-100' : '-translate-y-full opacity-0 scale-95'
     }`}>
-      <div className={`px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border backdrop-blur-sm ${
-        message.type === 'success' ? 'bg-orange-50 border-orange-200 text-orange-800' :
-        message.type === 'info' ? 'bg-blue-50 border-blue-200 text-blue-800' :
-        'bg-white border-gray-200 text-gray-800'
+      <div className={`px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border backdrop-blur-xl ${
+        message.type === 'success' ? 'bg-orange-500/20 border-orange-300/30 text-white' :
+        message.type === 'info' ? 'bg-black/30 border-white/20 text-white' :
+        'bg-black/30 border-white/20 text-white'
       }`}>
-        {message.type === 'success' && <CheckCircle2 className="w-5 h-5 text-orange-500" />}
-        {message.type === 'info' && <Eye className="w-5 h-5 text-blue-500" />}
+        {message.type === 'success' && <CheckCircle2 className="w-5 h-5 text-orange-300" />}
+        {message.type === 'info' && <Eye className="w-5 h-5 text-white/80" />}
         <span className="font-medium">{message.text}</span>
       </div>
     </div>
   );
 
-  // Quick Stats Component
+  // Glass Morphism Stats Component
   const QuickStats = () => (
     <div className="flex gap-4 mb-6">
-      <div className="flex-1 bg-white bg-opacity-20 rounded-2xl p-4 backdrop-blur-sm">
+      <div className="flex-1 bg-black/20 rounded-2xl p-4 backdrop-blur-xl border border-white/10">
         <div className="flex items-center gap-2 mb-1">
-          <TrendingUp className="w-4 h-4 text-white" />
-          <span className="text-white text-sm font-medium">Match</span>
+          <TrendingUp className="w-4 h-4 text-orange-400" />
+          <span className="text-white/90 text-sm font-medium">Match</span>
         </div>
         <p className="text-2xl font-bold text-white">{mission.matchScore}%</p>
       </div>
-      <div className="flex-1 bg-white bg-opacity-20 rounded-2xl p-4 backdrop-blur-sm">
+      <div className="flex-1 bg-black/20 rounded-2xl p-4 backdrop-blur-xl border border-white/10">
         <div className="flex items-center gap-2 mb-1">
-          <Users className="w-4 h-4 text-white" />
-          <span className="text-white text-sm font-medium">Interessados</span>
+          <Users className="w-4 h-4 text-orange-400" />
+          <span className="text-white/90 text-sm font-medium">Interessados</span>
         </div>
         <p className="text-2xl font-bold text-white">{mission.viewCount}</p>
       </div>
     </div>
   );
 
-  // Details Modal
+  // Enhanced Glass Details Modal
   const DetailsModal = () => (
     <div className={`fixed inset-0 z-50 transition-all duration-300 ${showDetails ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-      <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" onClick={() => setShowDetails(false)} />
-      <div className={`absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl max-h-[85vh] overflow-y-auto transition-transform duration-300 ${showDetails ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowDetails(false)} />
+      <div className={`absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-2xl border-t border-white/20 rounded-t-3xl max-h-[85vh] overflow-y-auto transition-transform duration-300 ${showDetails ? 'translate-y-0' : 'translate-y-full'}`}>
         <div className="p-6">
-          <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-6" />
+          <div className="w-12 h-1 bg-white/30 rounded-full mx-auto mb-6" />
           
           <div className="flex items-center gap-4 mb-6">
-            <div className={`p-3 ${mission.categoryColor} rounded-2xl`}>
+            <div className={`p-3 ${mission.categoryColor} rounded-2xl backdrop-blur-xl`}>
               <IconComponent className="w-6 h-6 text-white" />
             </div>
             <div className="flex-1">
-              <h2 className="text-xl font-bold text-gray-800">{mission.title}</h2>
-              <p className="text-gray-600">{mission.category}</p>
+              <h2 className="text-xl font-bold text-white">{mission.title}</h2>
+              <p className="text-white/70">{mission.category}</p>
             </div>
             <button 
               onClick={() => setShowDetails(false)}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              className="p-2 hover:bg-white/10 rounded-full transition-colors"
             >
-              <X className="w-5 h-5 text-gray-400" />
+              <X className="w-5 h-5 text-white/60" />
             </button>
           </div>
 
           <div className="space-y-6">
             <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Descrição Completa</h3>
-              <p className="text-gray-600 leading-relaxed">{mission.fullDescription}</p>
+              <h3 className="font-semibold text-white mb-2">Descrição Completa</h3>
+              <p className="text-white/80 leading-relaxed">{mission.fullDescription}</p>
             </div>
 
             <div>
-              <h3 className="font-semibold text-gray-800 mb-3">Requisitos</h3>
+              <h3 className="font-semibold text-white mb-3">Requisitos</h3>
               <div className="space-y-2">
                 {mission.requirements.map((req, index) => (
                   <div key={index} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-orange-500" />
-                    <span className="text-gray-600 text-sm">{req}</span>
+                    <CheckCircle2 className="w-4 h-4 text-orange-400" />
+                    <span className="text-white/80 text-sm">{req}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div>
-              <h3 className="font-semibold text-gray-800 mb-3">Entregáveis</h3>
+              <h3 className="font-semibold text-white mb-3">Entregáveis</h3>
               <div className="space-y-2">
                 {mission.deliverables.map((deliverable, index) => (
                   <div key={index} className="flex items-center gap-2">
-                    <Star className="w-4 h-4 text-orange-500" />
-                    <span className="text-gray-600 text-sm">{deliverable}</span>
+                    <Star className="w-4 h-4 text-orange-400" />
+                    <span className="text-white/80 text-sm">{deliverable}</span>
                   </div>
                 ))}
               </div>
@@ -437,7 +433,7 @@ const MissionsApp = () => {
                   setShowDetails(false);
                   handleSkip();
                 }}
-                className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-2xl font-semibold transition-colors"
+                className="flex-1 bg-black/30 hover:bg-black/50 backdrop-blur-xl border border-white/20 text-white py-3 rounded-2xl font-semibold transition-all"
               >
                 Não Interessado
               </button>
@@ -446,7 +442,7 @@ const MissionsApp = () => {
                   setShowDetails(false);
                   handleAccept();
                 }}
-                className="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-2xl font-semibold transition-colors"
+                className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-3 rounded-2xl font-semibold transition-all shadow-lg"
               >
                 Aceitar Missão
               </button>
@@ -457,26 +453,26 @@ const MissionsApp = () => {
     </div>
   );
 
-  // Filters Modal
+  // Enhanced Glass Filters Modal
   const FiltersModal = () => (
     <div className={`fixed inset-0 z-50 transition-all duration-300 ${showFilters ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-      <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" onClick={() => setShowFilters(false)} />
-      <div className={`absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl p-6 transition-transform duration-300 ${showFilters ? 'translate-y-0' : 'translate-y-full'}`}>
-        <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-6" />
-        <h3 className="text-xl font-bold text-gray-800 mb-6">Filtros</h3>
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowFilters(false)} />
+      <div className={`absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-2xl border-t border-white/20 rounded-t-3xl p-6 transition-transform duration-300 ${showFilters ? 'translate-y-0' : 'translate-y-full'}`}>
+        <div className="w-12 h-1 bg-white/30 rounded-full mx-auto mb-6" />
+        <h3 className="text-xl font-bold text-white mb-6">Filtros</h3>
         
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Categoria</label>
+            <label className="block text-sm font-medium text-white/80 mb-3">Categoria</label>
             <div className="flex flex-wrap gap-2">
               {['all', 'Fotografia', 'Música', 'Tecnologia', 'Serviços', 'Educação'].map(cat => (
                 <button
                   key={cat}
                   onClick={() => setFilters({...filters, category: cat})}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all backdrop-blur-xl border ${
                     filters.category === cat 
-                      ? 'bg-orange-500 text-white' 
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      ? 'bg-orange-500/50 text-white border-orange-400/50' 
+                      : 'bg-black/20 text-white/70 hover:bg-black/30 border-white/20'
                   }`}
                 >
                   {cat === 'all' ? 'Todas' : cat}
@@ -488,13 +484,13 @@ const MissionsApp = () => {
           <div className="flex gap-4">
             <button 
               onClick={() => setShowFilters(false)}
-              className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-2xl font-semibold transition-colors"
+              className="flex-1 bg-black/30 hover:bg-black/50 backdrop-blur-xl border border-white/20 text-white py-3 rounded-2xl font-semibold transition-all"
             >
               Cancelar
             </button>
             <button 
               onClick={() => setShowFilters(false)}
-              className="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-2xl font-semibold transition-colors"
+              className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-3 rounded-2xl font-semibold transition-all shadow-lg"
             >
               Aplicar Filtros
             </button>
@@ -504,14 +500,13 @@ const MissionsApp = () => {
     </div>
   );
 
-  // Gesture hint overlay
+  // Gesture hint overlay with glass effect
   const GestureHints = () => (
     <div className="absolute inset-0 pointer-events-none z-20">
-      {/* Swipe indicators */}
       <div className={`absolute top-1/2 left-4 transform -translate-y-1/2 transition-opacity duration-300 ${
         cardPosition.x < -50 ? 'opacity-100' : 'opacity-0'
       }`}>
-        <div className="bg-red-500 text-white px-3 py-2 rounded-full text-sm font-bold flex items-center gap-1">
+        <div className="bg-red-500/30 backdrop-blur-xl border border-red-400/30 text-white px-3 py-2 rounded-full text-sm font-bold flex items-center gap-1">
           <X className="w-4 h-4" />
           Pular
         </div>
@@ -520,7 +515,7 @@ const MissionsApp = () => {
       <div className={`absolute top-1/2 right-4 transform -translate-y-1/2 transition-opacity duration-300 ${
         cardPosition.x > 50 ? 'opacity-100' : 'opacity-0'
       }`}>
-        <div className="bg-green-500 text-white px-3 py-2 rounded-full text-sm font-bold flex items-center gap-1">
+        <div className="bg-green-500/30 backdrop-blur-xl border border-green-400/30 text-white px-3 py-2 rounded-full text-sm font-bold flex items-center gap-1">
           <Heart className="w-4 h-4" />
           Aceitar
         </div>
@@ -529,7 +524,7 @@ const MissionsApp = () => {
       <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 transition-opacity duration-300 ${
         cardPosition.y < -50 ? 'opacity-100' : 'opacity-0'
       }`}>
-        <div className="bg-blue-500 text-white px-3 py-2 rounded-full text-sm font-bold flex items-center gap-1">
+        <div className="bg-blue-500/30 backdrop-blur-xl border border-blue-400/30 text-white px-3 py-2 rounded-full text-sm font-bold flex items-center gap-1">
           <ChevronUp className="w-4 h-4" />
           Detalhes
         </div>
@@ -538,7 +533,7 @@ const MissionsApp = () => {
       <div className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 transition-opacity duration-300 ${
         cardPosition.y > 50 ? 'opacity-100' : 'opacity-0'
       }`}>
-        <div className="bg-yellow-500 text-white px-3 py-2 rounded-full text-sm font-bold flex items-center gap-1">
+        <div className="bg-yellow-500/30 backdrop-blur-xl border border-yellow-400/30 text-white px-3 py-2 rounded-full text-sm font-bold flex items-center gap-1">
           <Bookmark className="w-4 h-4" />
           Salvar
         </div>
@@ -548,18 +543,18 @@ const MissionsApp = () => {
 
   if (showAccepted) {
     return (
-      <div className="max-w-md mx-auto bg-gray-50 min-h-screen">
-        <div className="bg-gradient-to-r from-orange-500 to-red-500 p-6 pt-12 text-white">
+      <div className="max-w-md mx-auto bg-gradient-to-br from-black via-gray-900 to-black min-h-screen">
+        <div className="bg-gradient-to-br from-orange-500/80 via-orange-600/80 to-black/80 backdrop-blur-xl p-6 pt-12 text-white border-b border-white/10">
           <div className="flex items-center gap-4 mb-4">
             <button 
               onClick={() => setShowAccepted(false)}
-              className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full transition-colors"
+              className="p-2 bg-black/20 hover:bg-black/30 backdrop-blur-xl rounded-full transition-colors border border-white/20"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="flex-1">
               <h1 className="text-xl font-bold">Minhas Missões</h1>
-              <p className="text-orange-100 text-sm">{acceptedMissions.length} missões aceitas</p>
+              <p className="text-white/80 text-sm">{acceptedMissions.length} missões aceitas</p>
             </div>
           </div>
         </div>
@@ -567,33 +562,33 @@ const MissionsApp = () => {
         <div className="p-4 space-y-4 -mt-4">
           {acceptedMissions.length === 0 ? (
             <div className="text-center py-16">
-              <div className="w-20 h-20 bg-gradient-to-br from-orange-100 to-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8 text-orange-500" />
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-500/20 to-orange-600/20 backdrop-blur-xl rounded-full flex items-center justify-center mx-auto mb-4 border border-orange-400/30">
+                <Heart className="w-8 h-8 text-orange-400" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Nenhuma missão ainda</h3>
-              <p className="text-gray-500 text-sm">Aceite missões para começar a trabalhar</p>
+              <h3 className="text-lg font-semibold text-white mb-2">Nenhuma missão ainda</h3>
+              <p className="text-white/60 text-sm">Aceite missões para começar a trabalhar</p>
             </div>
           ) : (
             acceptedMissions.map((acceptedMission, index) => (
-              <div key={acceptedMission.id} className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <div key={acceptedMission.id} className="bg-black/30 backdrop-blur-xl rounded-3xl p-5 border border-white/10 hover:border-orange-400/30 transition-all">
                 <div className="flex items-start gap-4">
-                  <div className={`p-3 ${acceptedMission.categoryColor} rounded-2xl shadow-lg`}>
+                  <div className={`p-3 ${acceptedMission.categoryColor} rounded-2xl shadow-lg backdrop-blur-xl`}>
                     <acceptedMission.icon className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-bold text-gray-800 text-lg">{acceptedMission.title}</h3>
-                      <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">
+                      <h3 className="font-bold text-white text-lg">{acceptedMission.title}</h3>
+                      <span className="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-xl border border-orange-400/30">
                         Aceita
                       </span>
                     </div>
                     <div className="flex items-center gap-2 mb-2">
-                      <MapPin className="w-4 h-4 text-gray-400" />
-                      <span className="text-gray-600 text-sm">{acceptedMission.location}</span>
+                      <MapPin className="w-4 h-4 text-white/60" />
+                      <span className="text-white/80 text-sm">{acceptedMission.location}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-orange-600 font-bold text-xl">{acceptedMission.price}</span>
-                      <button className="text-orange-600 font-medium text-sm flex items-center gap-1 hover:text-orange-700">
+                      <span className="text-orange-400 font-bold text-xl">{acceptedMission.price}</span>
+                      <button className="text-orange-400 font-medium text-sm flex items-center gap-1 hover:text-orange-300 transition-colors">
                         Ver detalhes <ChevronRight className="w-4 h-4" />
                       </button>
                     </div>
@@ -608,42 +603,42 @@ const MissionsApp = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto bg-gradient-to-br from-orange-50 to-red-50 min-h-screen relative overflow-hidden">
+    <div className="max-w-md mx-auto bg-gradient-to-br from-black via-gray-900 to-black min-h-screen relative overflow-hidden">
       <Toast message={toastMessage} show={showToast} />
       <FiltersModal />
       <DetailsModal />
       
-      {/* Enhanced Header */}
-      <div className="bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 p-6 pt-12 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-40 h-40 bg-white bg-opacity-10 rounded-full -translate-y-20 translate-x-20"></div>
-        <div className="absolute bottom-0 left-0 w-32 h-32 bg-white bg-opacity-10 rounded-full translate-y-16 -translate-x-16"></div>
-        <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-white bg-opacity-30 rounded-full"></div>
-        <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-white bg-opacity-50 rounded-full"></div>
+      {/* Enhanced Glass Header with Gradient Background */}
+      <div className="bg-gradient-to-br from-orange-500/80 via-orange-600/80 to-black/80 backdrop-blur-xl p-6 pt-12 text-white relative overflow-hidden border-b border-white/10">
+        <div className="absolute top-0 right-0 w-40 h-40 bg-orange-400/10 rounded-full -translate-y-20 translate-x-20 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-orange-500/10 rounded-full translate-y-16 -translate-x-16 blur-2xl"></div>
+        <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-orange-300/50 rounded-full"></div>
+        <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-orange-200/60 rounded-full"></div>
         
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="text-2xl font-bold mb-1">Challenger 🚀</h1>
-              <p className="text-orange-100">Suas melhores oportunidades te esperam</p>
+              <p className="text-white/80">Suas melhores oportunidades te esperam</p>
             </div>
             <div className="flex gap-2">
               <button 
                 onClick={() => setShowFilters(true)}
-                className="p-3 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all duration-200 hover:scale-105"
+                className="p-3 bg-black/20 backdrop-blur-xl rounded-full hover:bg-black/30 transition-all duration-200 hover:scale-105 border border-white/20"
               >
                 <Filter className="w-5 h-5" />
               </button>
-              <button className="p-3 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all duration-200 hover:scale-105 relative">
+              <button className="p-3 bg-black/20 backdrop-blur-xl rounded-full hover:bg-black/30 transition-all duration-200 hover:scale-105 border border-white/20 relative">
                 <Bell className="w-5 h-5" />
-                <div className="absolute top-2 right-2 w-2 h-2 bg-red-400 rounded-full"></div>
+                <div className="absolute top-2 right-2 w-2 h-2 bg-orange-400 rounded-full"></div>
               </button>
               <button 
                 onClick={() => setShowAccepted(true)}
-                className="p-3 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all duration-200 hover:scale-105 relative"
+                className="p-3 bg-black/20 backdrop-blur-xl rounded-full hover:bg-black/30 transition-all duration-200 hover:scale-105 border border-white/20 relative"
               >
                 <Heart className="w-5 h-5" />
                 {acceptedMissions.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold animate-pulse">
                     {acceptedMissions.length}
                   </span>
                 )}
@@ -654,24 +649,24 @@ const MissionsApp = () => {
           <QuickStats />
 
           <div className="flex items-center gap-3 mb-2">
-            <div className="flex-1 bg-white bg-opacity-20 rounded-full h-2 overflow-hidden">
+            <div className="flex-1 bg-black/20 backdrop-blur-xl rounded-full h-2 overflow-hidden border border-white/10">
               <div 
-                className="bg-white rounded-full h-2 transition-all duration-500 ease-out shadow-sm"
+                className="bg-gradient-to-r from-orange-400 to-orange-500 rounded-full h-2 transition-all duration-500 ease-out shadow-sm"
                 style={{ width: `${((currentMission + 1) / missions.length) * 100}%` }}
               ></div>
             </div>
-            <span className="text-orange-100 text-sm font-medium bg-white bg-opacity-20 px-3 py-1 rounded-full">
+            <span className="text-white/90 text-sm font-medium bg-black/20 backdrop-blur-xl px-3 py-1 rounded-full border border-white/10">
               {currentMission + 1}/{missions.length}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Mission Card with Gesture Support */}
+      {/* Enhanced Glass Mission Card */}
       <div className="px-6 -mt-8 relative z-10">
         <div 
           ref={cardRef}
-          className={`bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transition-all duration-300 cursor-grab active:cursor-grabbing select-none ${
+          className={`bg-black/20 backdrop-blur-2xl rounded-3xl shadow-2xl overflow-hidden border border-white/10 transition-all duration-300 cursor-grab active:cursor-grabbing select-none ${
             swipeDirection === 'right' ? 'transform translate-x-full rotate-12 opacity-0' :
             swipeDirection === 'left' ? 'transform -translate-x-full -rotate-12 opacity-0' :
             swipeDirection === 'down' ? 'transform translate-y-full opacity-0' :
@@ -689,7 +684,7 @@ const MissionsApp = () => {
           
           <div className="relative">
             <div className="absolute top-4 right-4 z-10">
-              <div className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
+              <div className="bg-orange-500/30 backdrop-blur-xl text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 border border-orange-400/30">
                 <Zap className="w-4 h-4" />
                 {mission.matchScore}% match
               </div>
@@ -697,67 +692,67 @@ const MissionsApp = () => {
             
             <div className="p-6 pb-4">
               <div className="flex items-center gap-3 mb-4">
-                <div className={`p-4 ${mission.categoryColor} rounded-2xl shadow-lg`}>
+                <div className={`p-4 ${mission.categoryColor} rounded-2xl shadow-lg backdrop-blur-xl`}>
                   <IconComponent className="w-7 h-7 text-white" />
                 </div>
                 <div className="flex-1">
-                  <span className={`px-3 py-1 ${mission.categoryColor} bg-opacity-15 text-gray-700 rounded-full text-sm font-semibold`}>
+                  <span className="px-3 py-1 bg-orange-500/20 backdrop-blur-xl text-orange-300 rounded-full text-sm font-semibold border border-orange-400/30">
                     {mission.category}
                   </span>
                   <div className="flex items-center gap-2 mt-1">
-                    <Eye className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-500 text-sm">{mission.viewCount} interessados</span>
+                    <Eye className="w-4 h-4 text-white/60" />
+                    <span className="text-white/70 text-sm">{mission.viewCount} interessados</span>
                   </div>
                 </div>
               </div>
 
-              <h2 className="text-2xl font-bold text-gray-800 mb-3 leading-tight">{mission.title}</h2>
+              <h2 className="text-2xl font-bold text-white mb-3 leading-tight">{mission.title}</h2>
               
               <div className="flex flex-wrap gap-2 mb-4">
                 {mission.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-gradient-to-r from-orange-100 to-red-100 text-orange-700 rounded-xl text-sm font-medium border border-orange-200">
+                  <span key={index} className="px-3 py-1 bg-orange-500/20 backdrop-blur-xl text-orange-300 rounded-xl text-sm font-medium border border-orange-400/30">
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <p className="text-gray-600 leading-relaxed mb-6 text-base">
+              <p className="text-white/80 leading-relaxed mb-6 text-base">
                 {mission.description}
               </p>
 
               <div className="space-y-4 mb-6">
-                <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl border border-orange-100">
-                  <div className="p-2 bg-orange-100 rounded-xl">
-                    <MapPin className="w-5 h-5 text-orange-600" />
+                <div className="flex items-center gap-4 p-3 bg-orange-500/10 backdrop-blur-xl rounded-2xl border border-orange-400/20">
+                  <div className="p-2 bg-orange-500/20 backdrop-blur-xl rounded-xl">
+                    <MapPin className="w-5 h-5 text-orange-400" />
                   </div>
                   <div className="flex-1">
-                    <span className="text-gray-800 font-semibold">{mission.location}</span>
-                    <div className="text-gray-500 text-sm">{mission.distance} de distância</div>
+                    <span className="text-white font-semibold">{mission.location}</span>
+                    <div className="text-white/70 text-sm">{mission.distance} de distância</div>
                   </div>
-                  <Navigation className="w-5 h-5 text-gray-400" />
+                  <Navigation className="w-5 h-5 text-white/60" />
                 </div>
                 
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-2xl">
-                    <Clock className="w-5 h-5 text-blue-600" />
+                  <div className="flex items-center gap-3 p-3 bg-blue-500/10 backdrop-blur-xl rounded-2xl border border-blue-400/20">
+                    <Clock className="w-5 h-5 text-blue-400" />
                     <div>
-                      <div className="text-gray-800 font-semibold text-sm">{mission.time}</div>
+                      <div className="text-white font-semibold text-sm">{mission.time}</div>
                       <span className={`text-xs font-medium ${
-                        mission.urgency === 'Urgente' ? 'text-red-600' : 'text-gray-500'
+                        mission.urgency === 'Urgente' ? 'text-red-400' : 'text-white/70'
                       }`}>
                         {mission.urgency}
                       </span>
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl">
-                    <div className="text-orange-600 font-bold text-lg">R$</div>
+                  <div className="flex items-center gap-3 p-3 bg-orange-500/10 backdrop-blur-xl rounded-2xl border border-orange-400/20">
+                    <div className="text-orange-400 font-bold text-lg">R$</div>
                     <div>
-                      <div className="text-xl font-bold text-gray-800">{mission.price.replace('R$ ', '')}</div>
+                      <div className="text-xl font-bold text-white">{mission.price.replace('R$ ', '')}</div>
                       <span className={`text-xs font-medium ${
-                        mission.difficulty === 'Fácil' ? 'text-green-600' :
-                        mission.difficulty === 'Médio' ? 'text-yellow-600' :
-                        'text-red-600'
+                        mission.difficulty === 'Fácil' ? 'text-green-400' :
+                        mission.difficulty === 'Médio' ? 'text-yellow-400' :
+                        'text-red-400'
                       }`}>
                         {mission.difficulty}
                       </span>
@@ -768,13 +763,13 @@ const MissionsApp = () => {
 
               {mission.benefits && (
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-1">
+                  <h4 className="text-sm font-semibold text-white/90 mb-2 flex items-center gap-1">
                     <Award className="w-4 h-4" />
                     Vantagens desta missão
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {mission.benefits.map((benefit, index) => (
-                      <span key={index} className="px-2 py-1 bg-orange-50 text-orange-700 rounded-lg text-xs font-medium">
+                      <span key={index} className="px-2 py-1 bg-orange-500/10 backdrop-blur-xl text-orange-300 rounded-lg text-xs font-medium border border-orange-400/20">
                         {benefit}
                       </span>
                     ))}
@@ -782,37 +777,37 @@ const MissionsApp = () => {
                 </div>
               )}
 
-              <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-4 border border-gray-200">
+              <div className="bg-black/20 backdrop-blur-xl rounded-2xl p-4 border border-white/10">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-14 h-14 bg-gradient-to-br from-orange-200 to-red-200 rounded-full flex items-center justify-center text-2xl">
+                    <div className="w-14 h-14 bg-gradient-to-br from-orange-400/30 to-orange-600/30 backdrop-blur-xl rounded-full flex items-center justify-center text-2xl border border-orange-400/30">
                       {mission.client.avatar}
                     </div>
                     {mission.client.verified && (
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center border-2 border-white">
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center border-2 border-black">
                         <CheckCircle2 className="w-4 h-4 text-white" />
                       </div>
                     )}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <p className="font-bold text-gray-800">{mission.client.name}</p>
+                      <p className="font-bold text-white">{mission.client.name}</p>
                       {mission.client.verified && (
-                        <span className="text-orange-500 text-xs font-medium">Verificado</span>
+                        <span className="text-orange-400 text-xs font-medium">Verificado</span>
                       )}
                     </div>
                     <div className="flex items-center gap-3 text-sm">
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="font-semibold text-gray-700">{mission.client.rating}</span>
-                        <span className="text-gray-500">({mission.client.reviews})</span>
+                        <span className="font-semibold text-white/90">{mission.client.rating}</span>
+                        <span className="text-white/60">({mission.client.reviews})</span>
                       </div>
-                      <span className="text-gray-400">•</span>
-                      <span className="text-orange-600 font-medium">Responde {mission.client.responseTime}</span>
+                      <span className="text-white/40">•</span>
+                      <span className="text-orange-400 font-medium">Responde {mission.client.responseTime}</span>
                     </div>
                   </div>
-                  <button className="p-2 hover:bg-white rounded-full transition-colors">
-                    <MessageCircle className="w-5 h-5 text-gray-400" />
+                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <MessageCircle className="w-5 h-5 text-white/60" />
                   </button>
                 </div>
               </div>
@@ -822,7 +817,7 @@ const MissionsApp = () => {
               <div className="flex gap-4">
                 <button 
                   onClick={handleSkip}
-                  className="flex-1 bg-white hover:bg-gray-50 transition-all duration-200 text-gray-700 rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-semibold border-2 border-gray-200 hover:border-gray-300 hover:scale-105 transform"
+                  className="flex-1 bg-black/30 hover:bg-black/50 backdrop-blur-xl transition-all duration-200 text-white rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-semibold border border-white/20 hover:border-white/30 hover:scale-105 transform"
                 >
                   <X className="w-6 h-6" />
                   Pular
@@ -831,7 +826,7 @@ const MissionsApp = () => {
                 <button 
                   onClick={handleAccept}
                   disabled={isLoading}
-                  className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 transition-all duration-200 text-white rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-bold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                  className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-200 text-white rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-bold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
                 >
                   {isLoading ? (
                     <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -843,7 +838,7 @@ const MissionsApp = () => {
               </div>
               
               <div className="text-center mt-4">
-                <p className="text-gray-400 text-sm">
+                <p className="text-white/60 text-sm">
                   👆 Detalhes • 👉 Aceitar • 👈 Pular • 👇 Salvar
                 </p>
               </div>
